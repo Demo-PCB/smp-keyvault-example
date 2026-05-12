@@ -1,0 +1,37 @@
+name: CD - Key Vault DEV
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Artifact version to deploy. Example: 1.0.0-42. Optional when triggered by workflow_run.'
+        required: false
+        type: string
+  workflow_run:
+    workflows: ['CI - Key Vault']
+    types: [completed]
+    branches: [main]
+
+concurrency:
+  group: cd-keyvault-dev
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+  actions: read
+
+jobs:
+  deploy-dev:
+    name: Deploy to DEV
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    uses: Demo-PCB/dso-keyvault-reusable/.github/workflows/_cd-keyvault-dev.yml@main
+    with:
+      application: dso
+      component-name: dso-keyvault-example
+      version: ${{ github.event.inputs.version || '' }}
+      config-file-path: keyvault/config.yml
+      artifactory-url: ${{ vars.IBK_ARTIFACTORY_URL }}
+      initial-secret-value: DEMO
+      FLAG_DRY_RUN_ONLY: false
+    secrets: inherit

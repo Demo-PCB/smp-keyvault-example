@@ -1,0 +1,13 @@
+version: 1.0.0
+
+dev:
+  keyvault-name: kv-devsecops-carlos
+  resource-group: rg-devsecops-lab
+
+uat:
+  keyvault-name: kv-devsecops-carlos-uat
+  resource-group: rg-devsecops-lab
+
+prd:
+  keyvault-name: kv-devsecops-carlos-prd
+  resource-group: rg-devsecops-lab

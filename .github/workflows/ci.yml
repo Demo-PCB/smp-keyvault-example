@@ -1,0 +1,39 @@
+name: CI - Key Vault
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'keyvault/data.json'
+      - 'keyvault/config.yml'
+  pull_request:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'keyvault/data.json'
+      - 'keyvault/config.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ci-keyvault-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  ci:
+    name: Validate, Package and Publish
+    uses: Demo-PCB/dso-keyvault-reusable/.github/workflows/_ci-keyvault.yml@main
+    with:
+      application: dso
+      component-name: dso-keyvault-example
+      data-file-path: keyvault/data.json
+      config-file-path: keyvault/config.yml
+      artifactory-url: ${{ vars.IBK_ARTIFACTORY_URL }}
+      FLAG_PUBLISH_ARTIFACTS: true
+    secrets: inherit

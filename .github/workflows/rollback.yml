@@ -1,0 +1,39 @@
+name: Rollback - Key Vault DEV/UAT
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to rollback'
+        required: true
+        type: choice
+        options:
+          - dev
+          - uat
+      version:
+        description: 'Artifact version to rollback to. Example: 1.0.0-42'
+        required: true
+        type: string
+
+concurrency:
+  group: rollback-keyvault-${{ inputs.environment }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+  actions: read
+
+jobs:
+  rollback:
+    name: Rollback ${{ inputs.environment }}
+    uses: Demo-PCB/dso-keyvault-reusable/.github/workflows/_keyvault-rollback.yml@main
+    with:
+      application: dso
+      component-name: dso-keyvault-example
+      environment: ${{ inputs.environment }}
+      version: ${{ inputs.version }}
+      config-file-path: keyvault/config.yml
+      artifactory-url: ${{ vars.IBK_ARTIFACTORY_URL }}
+      initial-secret-value: DEMO
+    secrets: inherit

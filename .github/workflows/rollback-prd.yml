@@ -1,0 +1,31 @@
+name: Rollback - Key Vault PRD
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Artifact version to rollback to. Example: 1.0.0-42'
+        required: true
+        type: string
+
+concurrency:
+  group: rollback-keyvault-prd
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+  actions: read
+
+jobs:
+  rollback-prd:
+    name: Rollback PRD
+    uses: Demo-PCB/dso-keyvault-reusable/.github/workflows/_keyvault-rollback-prd.yml@main
+    with:
+      application: dso
+      component-name: dso-keyvault-example
+      version: ${{ inputs.version }}
+      config-file-path: keyvault/config.yml
+      artifactory-url: ${{ vars.IBK_ARTIFACTORY_URL }}
+      initial-secret-value: DEMO
+    secrets: inherit
