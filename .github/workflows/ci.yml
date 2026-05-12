@@ -31,7 +31,7 @@ jobs:
     uses: Demo-PCB/smp-keyvault-reusable/.github/workflows/_ci-keyvault.yml@main
     with:
       application: dso
-      component-name: smp-keyvault-example
+      component-name: ${{ github.event.repository.name }}
       data-file-path: keyvault/data.json
       config-file-path: keyvault/config.yml
       artifactory-url: ${{ vars.IBK_ARTIFACTORY_URL }}

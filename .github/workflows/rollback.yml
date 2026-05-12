@@ -30,7 +30,7 @@ jobs:
     uses: Demo-PCB/dso-keyvault-reusable/.github/workflows/_keyvault-rollback.yml@main
     with:
       application: dso
-      component-name: dso-keyvault-example
+      component-name: ${{ github.event.repository.name }}
       environment: ${{ inputs.environment }}
       version: ${{ inputs.version }}
       config-file-path: keyvault/config.yml

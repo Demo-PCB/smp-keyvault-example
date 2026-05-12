@@ -1,4 +1,4 @@
-# dso-keyvault-example
+# ${{ github.event.repository.name }}
 
 Repositorio caller de ejemplo para actualizar Azure Key Vault usando workflows reutilizables.
 
