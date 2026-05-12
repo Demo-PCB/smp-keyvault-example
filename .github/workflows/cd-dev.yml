@@ -25,7 +25,7 @@ jobs:
   deploy-dev:
     name: Deploy to DEV
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
-    uses: Demo-PCB/dso-keyvault-reusable/.github/workflows/_cd-keyvault-dev.yml@main
+    uses: Demo-PCB/smp-keyvault-reusable/.github/workflows/_cd-keyvault-dev.yml@main
     with:
       application: dso
       component-name: dso-keyvault-example
