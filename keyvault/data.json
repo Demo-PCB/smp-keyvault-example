@@ -1,5 +1,8 @@
 {
   "ApiUrl": "",
   "DbPassword": "",
-  "JwtSecret": ""
+  "JwtSecret": "",
+  "Secreto01": "",
+  "Secreto02": "",
+  "Secreto03": ""
 }
