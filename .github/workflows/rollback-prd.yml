@@ -20,7 +20,7 @@ permissions:
 jobs:
   rollback-prd:
     name: Rollback PRD
-    uses: Demo-PCB/dso-keyvault-reusable/.github/workflows/_keyvault-rollback-prd.yml@main
+    uses: Demo-PCB/smp-keyvault-reusable/.github/workflows/_keyvault-rollback-prd.yml@main
     with:
       application: dso
       component-name: ${{ github.event.repository.name }}

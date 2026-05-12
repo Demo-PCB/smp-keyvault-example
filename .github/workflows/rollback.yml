@@ -27,7 +27,7 @@ permissions:
 jobs:
   rollback:
     name: Rollback ${{ inputs.environment }}
-    uses: Demo-PCB/dso-keyvault-reusable/.github/workflows/_keyvault-rollback.yml@main
+    uses: Demo-PCB/smp-keyvault-reusable/.github/workflows/_keyvault-rollback.yml@main
     with:
       application: dso
       component-name: ${{ github.event.repository.name }}
