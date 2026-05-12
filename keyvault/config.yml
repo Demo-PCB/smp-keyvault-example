@@ -5,9 +5,9 @@ dev:
   resource-group: rg-devsecops-lab
 
 uat:
-  keyvault-name: kv-devsecops-carlos-uat
-  resource-group: rg-devsecops-lab
+  keyvault-name: kv-devsecops-uatt
+  resource-group: rg-devsecops-uat
 
 prd:
-  keyvault-name: kv-devsecops-carlos-prd
-  resource-group: rg-devsecops-lab
+  keyvault-name: kv-devsecops-prdd
+  resource-group: rg-devsecops-prd
